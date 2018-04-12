@@ -1,0 +1,16 @@
+{
+  "name": "length.js",
+  "version": "0.0.1",
+  "description": "JavaScript library for length units conversion",
+  "homepage": "https://github.com/appalaszynski/length.js#readme",
+  "author": "appalaszynski",
+  "main": " length.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appalaszynski/length.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/appalaszynski/length.js/issues"
+  },
+  "license": "MIT"
+}
