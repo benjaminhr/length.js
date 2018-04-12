@@ -14,7 +14,7 @@
   }
 
   // Current length.js version.
-  var version = "0.0.1";
+  var version = "0.0.2";
 
   // Currently supported units.
   var supportedUnits = ['cm', 'm', 'ft'];
