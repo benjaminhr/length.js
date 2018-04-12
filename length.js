@@ -17,7 +17,7 @@
   var version = "0.0.1";
 
   // Currently supported units.
-  var supportedUnits = ['cm', 'm'];
+  var supportedUnits = ['cm', 'm', 'ft'];
 
   // Function used during new Length object creation. Check 'length' function.
   function validate(value, unit) {
@@ -39,6 +39,9 @@
       case 'm': {
         return this.value;
       }
+      case 'ft': {
+        return this.value * 0.3048;
+      }
     }
   }
 
@@ -50,6 +53,23 @@
       case 'cm': {
         return this.value;
       }
+      case 'ft': {
+        return this.value * 30.48;
+      }
+    }
+  }
+
+  function toFoot() {
+    switch (this.unit) {
+      case 'm': {
+        return this.value * (1/0.3048);
+      }
+      case 'cm': {
+        return this.value * (1 / 30.48);
+      }
+      case 'ft': {
+        return this.value;
+      }
     }
   }
 
@@ -59,6 +79,7 @@
   proto.version = version;
   proto.toMeter = toMeter;
   proto.toCentimeter = toCentimeter;
+  proto.toFoot = toFoot;
 
   // The actual Length object is created here
   function Length(value, unit) {
