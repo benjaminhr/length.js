@@ -1,13 +1,13 @@
- /*!
-  * length.js v0.0.1 (https://github.com/appalaszynski/length.js)
-  * Copyright (c) 2018 appalaszynski (https://github.com/appalaszynski)
-  * Licensed under MIT (https://github.com/appalaszynski/length.js/blob/master/LICENSE)
-  */
-;(function(global) {
+/*!
+ * length.js v0.0.1 (https://github.com/appalaszynski/length.js)
+ * Copyright (c) 2018 appalaszynski (https://github.com/appalaszynski)
+ * Licensed under MIT (https://github.com/appalaszynski/length.js/blob/master/LICENSE)
+ */
+;(function (global) {
 
   // Main length function (availavlable by global.length) which is
   // allowing us to create an object by calling 'length()' istead of 'new Length()'
-  var length = function(value, unit) {
+  var length = function (value, unit) {
     // Check if passed arguments are valid. If not - throw an error.
     validate(value, unit);
     return new Length(value, unit)
@@ -23,13 +23,13 @@
   function validate(value, unit) {
     if (!value || !unit) {
       throw Error('You have to pass value and unit type!')
-    }  else if (typeof value !== 'number') {
-      throw Error('Value must be a number!')      
+    } else if (typeof value !== 'number') {
+      throw Error('Value must be a number!')
     } else if (supportedUnits.indexOf(unit) == -1) {
-      throw Error('Unsupported unit type! Supported units list:\n' + supportedUnits)      
+      throw Error('Unsupported unit type! Supported units list:\n' + supportedUnits)
     }
   }
- 
+
   // Functions which are going to be available in every Length object prototype.
   function toMeter() {
     switch (this.unit) {
@@ -62,7 +62,7 @@
   function toFoot() {
     switch (this.unit) {
       case 'm': {
-        return this.value * (1/0.3048);
+        return this.value * (1 / 0.3048);
       }
       case 'cm': {
         return this.value * (1 / 30.48);
@@ -81,6 +81,9 @@
   proto.toCentimeter = toCentimeter;
   proto.toFoot = toFoot;
 
+  // Expose Length prototype If user wants to add new functions
+  length.fn = proto;
+
   // The actual Length object is created here
   function Length(value, unit) {
     this.value = value || 1;
@@ -89,9 +92,8 @@
 
   // Expose 'length' and 'L$' identifiers
   global.length = global.L$ = length;
-  if(typeof exports === 'object' && typeof module !== 'undefined'){
+  if (typeof exports === 'object' && typeof module !== 'undefined') {
     module.exports = length
   }
 
 }(this));
- 
