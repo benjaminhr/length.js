@@ -7,20 +7,20 @@
 
   // Main length function (availavlable by global.length) which is
   // allowing us to create an object by calling 'length()' istead of 'new Length()'
-  var length = function (value, unit) {
+  const length = (value, unit) => {
     // Check if passed arguments are valid. If not - throw an error.
     validate(value, unit);
     return new Length(value, unit)
   }
 
   // Current length.js version.
-  var version = "0.0.3";
+  const version = "0.0.3";
 
   // Currently supported units.
-  var supportedUnits = ['cm', 'm', 'ft'];
+  const supportedUnits = ['cm', 'm', 'ft'];
 
   // Function used during new Length object creation. Check 'length' function.
-  function validate(value, unit) {
+  const validate = (value, unit) => {
     if (!value || !unit) {
       throw Error('You have to pass value and unit type!')
     } else if (typeof value !== 'number') {
@@ -31,7 +31,7 @@
   }
 
   // Functions which are going to be available in every Length object prototype.
-  function toMeter() {
+  const toMeter = () => {
     switch (this.unit) {
       case 'cm': {
         return this.value * 0.01;
@@ -45,7 +45,7 @@
     }
   }
 
-  function toCentimeter() {
+  const toCentimeter = () => {
     switch (this.unit) {
       case 'm': {
         return this.value * 100;
@@ -59,7 +59,7 @@
     }
   }
 
-  function toFoot() {
+  const toFoot = () => {
     switch (this.unit) {
       case 'm': {
         return this.value * (1 / 0.3048);
@@ -74,7 +74,7 @@
   }
 
   // Initialize Length object prototype
-  var proto = Length.prototype = {};
+  const proto = Length.prototype = {};
   // Insert functions into Length object prototype
   proto.version = version;
   proto.toMeter = toMeter;
@@ -85,7 +85,7 @@
   length.fn = proto;
 
   // The actual Length object is created here
-  function Length(value, unit) {
+  const Length = (value, unit) => {
     this.value = value || 1;
     this.unit = unit || 'cm';
   }
